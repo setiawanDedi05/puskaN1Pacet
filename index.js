@@ -150,6 +150,43 @@ let pengunjung = [
         point:3,
     }
 ]
+function tambahData() {
+    let date = new Date()
+    let m = date.getMonth()
+    let d = date.getDay()
+    let y = date.getFullYear()
+    let fullDate = `0${m}-${d}-${y}`
+    // console.log(y);
+    document.getElementById("content").innerHTML = `<div class='tambahdata' style='margin-left:30%;'><h1>Tambah Data Baru</h1>
+    <table class='table' style='margin-left:50px;>
+    <form id='formTambah' action="index.html">
+        <tr>
+            <td style='text-align:left;'>
+            <label for="firstName" >Full Name</label>
+            </td>
+            <td>:</td>
+            <td><input type="text" name="firstName"></td>
+        </tr>
+        <tr>
+            <td style='text-align:left;'>
+            <label for="Gender">Gender:</label>
+            </td>
+            <td>:</td>
+            <td style='text-align:left;'><input style='margin-left:15px;' type="radio" name="gender" value="male">Male
+            <input type="radio" name="gender" value="female">Female</td>
+        </tr>
+        <tr>
+            <td style='text-align:left;'><label for="buku">Buku yang akan diBaca:</label></td>
+            <td>:</td>
+            <td><input type="text" name="buku"></td>
+        <tr>
+        <input type="hidden" name="date" value="${fullDate}">
+        <tr>
+            <td colspan='3' style='text-align:right;'>
+            <input class='btn' type="submit" value="Tambah Data" onclick='prosesTambah()'></td>
+        </tr>
+        </form></table></div>`
+}
 function sortingPengunjung(pengunjung) {
     let output = pengunjung.sort(function (a, b) {
         return parseFloat(a.point) - parseFloat(b.point);
@@ -270,7 +307,7 @@ function displayVisitor() {
     // console.log(visitor);
     let sortVisitor = visitor.sort()
     // console.log(sortVisitor);
-    document.getElementById("content").innerHTML = `<h1>Daftar Pengunjung</h1>`
+    document.getElementById("content").innerHTML = `<h1>Daftar Pengunjung</h1><button class='btn' id='tambahData' onclick='tambahData()'>Tambah Data</button>`
     const parent = document.getElementById("content");
     const center = document.createElement("center")
     parent.appendChild(center)
